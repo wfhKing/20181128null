@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.todo.mapper.TodoMapper">
+
+  <select id="getTodos" resultType="todo">
+    select * from todo
+  </select>
+
+  <insert id="addTodo" parameterType="com.nf147.todo.entity.Todo">
+   insert into todo(name,detail,memo) values (
+      #{name}, #{detail},#{memo}
+    )
+  </insert>
+
+  <delete id="deleteTodo" parameterType="java.lang.Integer">
+    delete from todo where id=#{id}
+  </delete>
+
+  <update id="makeDone">
+    update todo set state='done',finished_at=now() where id=#{id}
+  </update>
+
+  <update id="makeCancle">
+    update todo set state='cancle',finished_at=null where id=#{id}
+  </update>
+</mapper>
